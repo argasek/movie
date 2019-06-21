@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/" exact component={Homepage} />
-        <Route path="/film" component={Movie} />
+        <Route path="/film/:name" component={Movie} />
         <Route path="/kategorie" component={Categories} />
         <Route path="/kategoria/:name" component={Category} />
         <Route component={NotFound} />

@@ -1,33 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { API_CATEGORIES_URL } from '../../constants/const';
+import { connect } from 'react-redux';
 import Header from '../../components/header/header';
 import './categories.scss';
 import Loader from '../../components/loader/loader';
+import { loadCategoriesFromApi } from '../../actions/categories';
 
 
 class Categories extends Component {
     state = {
-        isLoading: true,
-        categoriesApi: {},
         filterLetter: ""
     }
     componentDidMount = () => {
-        //zmiana statnu przed ładnowanie i ustalenie loadera na true
-        this.setState({
-            isLoading: true
-        })
-        //zapytanie do API aby pobrać liste kategorii
-        axios({
-            method: 'GET',
-            url: API_CATEGORIES_URL
-        }).then((response) => {
-            this.setState({
-                isLoading: false,
-                categoriesApi: response.data.categories
-            })
-        })
+        this.props.dispatch(loadCategoriesFromApi());
     }
     filterByLetter = (letter) => {
         this.setState({
@@ -47,8 +32,8 @@ class Categories extends Component {
                     ]}
                 />
                 <div className="container">
-                    <Loader isLoading={this.state.isLoading} />
-                    {!this.state.isLoading &&
+                    <Loader isLoading={this.props.isLoading} />
+                    {!this.props.isLoading &&
                         <div className="categoriesList">
                             <h1>Lista kategorii</h1>
                             <ul className="filter">
@@ -58,7 +43,7 @@ class Categories extends Component {
                                 <li onClick={() => this.filterByLetter("C")} className={this.state.filterLetter === "C" && 'active'}>C</li>
                             </ul>
                             <div className="categories">
-                                {this.state.categoriesApi.filter((item) => {
+                                {this.props.categoriesApi.filter((item) => {
                                     if (this.state.filterLetter === "") {
                                         return true;
                                     } else {
@@ -82,4 +67,11 @@ class Categories extends Component {
     }
 }
 
-export default Categories;
+const mapStateToProps = (state) => {
+    return {
+        isLoading: state.categories.isLoading,
+        categoriesApi: state.categories.categoriesApi
+    }
+}
+
+export default connect(mapStateToProps, null)(Categories);

@@ -13,7 +13,6 @@ export const loadCategoryFromApi = (cleanNameCategory) => {
                 response.data.category,
                 response.data.movies.data
             ));
-            dispatch(changeCategoryLoading(false));
         })
     }
 }

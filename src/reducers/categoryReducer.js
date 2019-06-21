@@ -17,7 +17,8 @@ const categoryReducer = (state = initState, action) => {
             return {
                 ...state,
                 categoryApi: action.categoryFromApi,
-                moviesApi: action.movieFromApi
+                moviesApi: action.movieFromApi,
+                isLoading: false
             }
         default:
             return state;
