@@ -10,15 +10,15 @@ import { loadCategoriesFromApi } from '../../actions/categories';
 class Categories extends Component {
     state = {
         filterLetter: ""
-    }
+    };
     componentDidMount = () => {
         this.props.dispatch(loadCategoriesFromApi());
-    }
+    };
     filterByLetter = (letter) => {
         this.setState({
             filterLetter: letter
         })
-    }
+    };
     render() {
         return (
             <div>

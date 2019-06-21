@@ -12,7 +12,7 @@ const Header = (props) => {
                         <li><Link to='/'>Strona główna</Link></li>
                         {props.breadcrumb.map((item, key) => {
                             return (
-                                <li><Link to={item.link}>{item.name}</Link></li>
+                                <li key={item.name}><Link to={item.link}>{item.name}</Link></li>
                             );
                         })}
                     </ul>
@@ -20,6 +20,6 @@ const Header = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default Header;
