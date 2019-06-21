@@ -1,0 +1,19 @@
+#nav {
+    padding: 15px 0;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left {
+            display: flex;
+            align-items: center;
+
+            .logo {
+                display: block;
+                margin: 0 0 0 30px;
+            }
+        }
+    }
+}
