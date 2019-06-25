@@ -4,9 +4,11 @@ import { combineReducers } from 'redux';
 import categoryReducer from './categoryReducer';
 import categoriesReducer from './categoriesReducer';
 import movieReducer from './movieReducer';
+import usersReducer from './usersReducer';
 
 export default combineReducers({
-    category: categoryReducer,
-    categories: categoriesReducer,
-    movie: movieReducer
+  category: categoryReducer,
+  categories: categoriesReducer,
+  movie: movieReducer,
+  users: usersReducer,
 });
